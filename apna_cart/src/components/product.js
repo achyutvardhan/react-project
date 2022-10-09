@@ -1,22 +1,34 @@
-import React from 'react'
+import React from "react";
 
 export default function product(props) {
-
   return (
-    <div className='row'>
-        <div className='col-6'>
-            <h2>{props.product.name} <span class="badge bg-secondary">₹{props.product.price}</span></h2>
+    <div className="row">
+      <div className="col-6">
+        <h2>
+          {props.product.name}{" "}
+          <span class="badge bg-secondary">₹{props.product.price}</span>
+        </h2>
+      </div>
+      <div className="col-5">
+        <div
+          class="btn-group"
+          role="group"
+          aria-label="Basic mixed styles example"
+        >
+          <button type="button" class="btn btn-danger" onClick={()=>{props.decrementQuantity(props.Index)}}>
+            -
+          </button>
+          <button type="button" class="btn btn-warning" >
+            {props.product.quantity}
+          </button>
+          <button type="button" class="btn btn-success" onClick={()=>{props.incrementQuantity(props.index)}}>
+            +
+          </button>
         </div>
-        <div className="col-5">
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-         <button type="button" class="btn btn-danger">-</button>
-         <button type="button" class="btn btn-warning">{props.product.quantity}</button>
-           <button type="button" class="btn btn-success"  onClick={this.incrementQuantity()}>+</button>
-         </div>
-        </div>
-        <div className="col-4">
-            {props.product.quantity*props.product.price }
-        </div>
+      </div>
+      <div className="col-4">
+        {props.product.quantity * props.product.price}
+      </div>
     </div>
-  )
+  );
 }
