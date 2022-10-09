@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/navbar";
 import ProductList from "./components/productList";
@@ -25,20 +25,51 @@ function App() {
   ];
 
   let [productList, setProductList] = useState(products);
+  let [totalAmount, settotalAmount] = useState(0);
+  let [quantity, setQuantity] = useState(products)
 
   const incrementQuantity = (i) => {
     let newProductList = [...productList];
-    console.log(newProductList);
+    let newtotalAmount = totalAmount;
+
+    // console.log(newProductList);
     newProductList[i].quantity++;
+    newtotalAmount += newProductList[i].price;
     setProductList(newProductList);
+    settotalAmount(newtotalAmount)
   };
   const decrementQuantity = (i) => {
     let newProductList = [...productList];
-    console.log(newProductList);
-    if (newProductList[i].quantity > 0) newProductList[i].quantity--;
+    let newtotalAmount = totalAmount;
+
+    // console.log(newProductList);
+    if (newProductList[i].quantity > 0) 
+    {
+
+      newProductList[i].quantity--;
+    newtotalAmount -= newProductList[i].price;
+
+    }
     setProductList(newProductList);
+    settotalAmount(newtotalAmount)
   };
 
+   const reset = (i) =>{
+    let newProductList = [...quantity];
+    for (; i < quantity.length; i++) {
+      newProductList[i].quantity = 0;
+    }
+   setQuantity(newProductList);
+   settotalAmount(0);
+   }
+   const removeitem = (i)=>{
+    let newProductList = [...productList];
+    let newtotalAmount = totalAmount;
+    newtotalAmount -= newProductList[i].quantity*newProductList[i].price
+    newProductList.splice(i,1)
+    setProductList(newProductList)
+    settotalAmount(newtotalAmount)
+   }
   return (
     <>
       <Navbar />
@@ -47,9 +78,10 @@ function App() {
           productList={productList}
           incrementQuantity={incrementQuantity}
           decrementQuantity={decrementQuantity}
+          removeitem = {removeitem}
         />
       </main>
-      {/* <Footer/> */}
+      <Footer totalAmount={totalAmount} reset={reset} />
     </>
   );
 }

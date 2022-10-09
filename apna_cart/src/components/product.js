@@ -2,14 +2,14 @@ import React from "react";
 
 export default function product(props) {
   return (
-    <div className="row">
-      <div className="col-6">
+    <div className="row mt-3">
+      <div className="col-5">
         <h2>
           {props.product.name}{" "}
           <span class="badge bg-secondary">₹{props.product.price}</span>
         </h2>
       </div>
-      <div className="col-5">
+      <div className="col-3">
         <div
           class="btn-group"
           role="group"
@@ -26,9 +26,10 @@ export default function product(props) {
           </button>
         </div>
       </div>
-      <div className="col-4">
+      <div className="col-2">
         {props.product.quantity * props.product.price}
       </div>
+      <button className="col-2 btn btn-danger" onClick={()=>{props.remove(props.index1)}}>Remove</button>
     </div>
   );
 }
