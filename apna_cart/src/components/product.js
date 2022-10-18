@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function product(props) {
+  console.log(props)
   return (
     <div className="row mt-3">
       <div className="col-5">
